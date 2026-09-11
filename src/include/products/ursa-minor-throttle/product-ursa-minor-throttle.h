@@ -29,6 +29,7 @@ class ProductUrsaMinorThrottle : public USBDevice {
 
         int lastVibration = 0;
         float lastGForce = 1.0f;
+        float lastGForceTime = 0.0f;
 
         void setProfileForCurrentAircraft();
         void loadVibrationSetting(const std::string &preference);

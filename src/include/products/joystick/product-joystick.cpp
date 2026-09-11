@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <XPLMProcessing.h>
 
 ProductJoystick::ProductJoystick(HIDDeviceHandle hidDevice, uint16_t vendorId, uint16_t productId, std::string vendorName, std::string productName, unsigned char identifierByte, unsigned char motorCode) : USBDevice(hidDevice, vendorId, productId, vendorName, productName), identifierByte(identifierByte), motorCode(motorCode) {
     profile = nullptr;
@@ -144,9 +145,12 @@ void ProductJoystick::update() {
     USBDevice::update();
 
     if (Dataref::getInstance()->getCached<int>("sim/time/total_flight_time_sec") > 10) {
+        float now = XPLMGetElapsedTime();
         float gForce = Dataref::getInstance()->get<float>("sim/flightmodel/forces/g_nrml");
-        float delta = fabs(gForce - lastGForce);
+        float frameTime = std::max(now - lastGForceTime, 0.001f);
+        float delta = fabs(gForce - lastGForce) * ((1.0f / 25.0f) / frameTime);
         lastGForce = gForce;
+        lastGForceTime = now;
 
         bool onGround = Dataref::getInstance()->getCached<bool>("sim/flightmodel/failures/onground_any");
         uint8_t vibration = (uint8_t) std::min(255.0f, delta * vibrationMultiplier / (onGround ? 1.0f : 1.5f));
@@ -158,9 +162,14 @@ void ProductJoystick::update() {
             setVibration(vibration);
             lastVibration = vibration;
         }
-    } else if (lastVibration > 0) {
-        lastVibration = 0;
-        setVibration(lastVibration);
+    } else {
+        lastGForce = Dataref::getInstance()->get<float>("sim/flightmodel/forces/g_nrml");
+        lastGForceTime = XPLMGetElapsedTime();
+
+        if (lastVibration > 0) {
+            lastVibration = 0;
+            setVibration(lastVibration);
+        }
     }
 
     if (profile) {
