@@ -126,6 +126,12 @@
 		F64BE3EE2E1BF625003C1B73 /* usbcontroller_lin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F64BE3E32E1BF625003C1B73 /* usbcontroller_lin.cpp */; };
 		F65361762FA244A90039C2C9 /* power-scheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F65361752FA244A90039C2C9 /* power-scheme.cpp */; };
 		F65361772FA244A90039C2C9 /* power-scheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F65361752FA244A90039C2C9 /* power-scheme.cpp */; };
+		F662AA0A304C332300FAC102 /* ffa320-fmc-profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F662AA09304C332300FAC102 /* ffa320-fmc-profile.cpp */; };
+		F662AA0B304C332300FAC102 /* ffa320-fmc-profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F662AA09304C332300FAC102 /* ffa320-fmc-profile.cpp */; };
+		F662AA0E304C333C00FAC102 /* ffsharedvalues.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F662AA0D304C333C00FAC102 /* ffsharedvalues.cpp */; };
+		F662AA0F304C333C00FAC102 /* ffsharedvalues.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F662AA0D304C333C00FAC102 /* ffsharedvalues.cpp */; };
+		F662AA12304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F662AA11304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp */; };
+		F662AA13304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F662AA11304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp */; };
 		F67110DD2E5AF429008D493B /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F67110DC2E5AF429008D493B /* font.cpp */; };
 		F67110DE2E5AF429008D493B /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F67110DC2E5AF429008D493B /* font.cpp */; };
 		F671B5DE2EA96BBE00141EF2 /* rotatemd11-fmc-profile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F671B5DD2EA96BBE00141EF2 /* rotatemd11-fmc-profile.cpp */; };
@@ -390,6 +396,12 @@
 		F64BE3E62E1BF625003C1B73 /* usbdevice_win.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = usbdevice_win.cpp; sourceTree = "<group>"; };
 		F65361742FA244A90039C2C9 /* power-scheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "power-scheme.h"; sourceTree = "<group>"; };
 		F65361752FA244A90039C2C9 /* power-scheme.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "power-scheme.cpp"; sourceTree = "<group>"; };
+		F662AA08304C332300FAC102 /* ffa320-fmc-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ffa320-fmc-profile.h"; sourceTree = "<group>"; };
+		F662AA09304C332300FAC102 /* ffa320-fmc-profile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "ffa320-fmc-profile.cpp"; sourceTree = "<group>"; };
+		F662AA0C304C333C00FAC102 /* ffsharedvalues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffsharedvalues.h; sourceTree = "<group>"; };
+		F662AA0D304C333C00FAC102 /* ffsharedvalues.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ffsharedvalues.cpp; sourceTree = "<group>"; };
+		F662AA10304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "laminar-a333-ursa-minor-throttle-profile.h"; sourceTree = "<group>"; };
+		F662AA11304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "laminar-a333-ursa-minor-throttle-profile.cpp"; sourceTree = "<group>"; };
 		F66F91662D0332F600F84283 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F67110DC2E5AF429008D493B /* font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		F671B5DC2EA96BBE00141EF2 /* rotatemd11-fmc-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rotatemd11-fmc-profile.h"; sourceTree = "<group>"; };
@@ -438,6 +450,7 @@
 		F69FF22A2E1D13CB00F9D2D9 /* JoystickControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickControlView.swift; sourceTree = "<group>"; };
 		F6A0E6F02FDCA55200BEC19C /* xplane-bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xplane-bindings.h"; sourceTree = "<group>"; };
 		F6A0E6F12FDCA55200BEC19C /* xplane-bindings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "xplane-bindings.cpp"; sourceTree = "<group>"; };
+		F6A0E6F22FDCA55200BEC1AA /* path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = path.hpp; sourceTree = "<group>"; };
 		F6A149262E4F03A400FB8395 /* laminar-a333-fmc-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "laminar-a333-fmc-profile.h"; sourceTree = "<group>"; };
 		F6A149272E4F03A400FB8395 /* laminar-a333-fmc-profile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "laminar-a333-fmc-profile.cpp"; sourceTree = "<group>"; };
 		F6A149282E4F03A400FB8395 /* toliss-fmc-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "toliss-fmc-profile.h"; sourceTree = "<group>"; };
@@ -481,7 +494,6 @@
 		F6B520E62FC7676F00A04562 /* xcrafts-erj-ursa-minor-throttle-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "xcrafts-erj-ursa-minor-throttle-profile.h"; sourceTree = "<group>"; };
 		F6B520E72FC7676F00A04562 /* xcrafts-erj-ursa-minor-throttle-profile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "xcrafts-erj-ursa-minor-throttle-profile.cpp"; sourceTree = "<group>"; };
 		F6B79CFC2F4A5BFD00517E6A /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
-		F6A0E6F22FDCA55200BEC1AA /* path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = path.hpp; sourceTree = "<group>"; };
 		F6BB75712E32634700C2B21F /* toliss-fcu-efis-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "toliss-fcu-efis-profile.h"; sourceTree = "<group>"; };
 		F6BB75722E32634700C2B21F /* toliss-fcu-efis-profile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "toliss-fcu-efis-profile.cpp"; sourceTree = "<group>"; };
 		F6BB75742E32634700C2B21F /* fcu-efis-aircraft-profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fcu-efis-aircraft-profile.h"; sourceTree = "<group>"; };
@@ -801,6 +813,8 @@
 				F672B71C3017AA4500A7D1BC /* fjs732-fmc-profile.cpp */,
 				F69CA2CC301B860A001B0847 /* felis742-ltn-fmc-profile.h */,
 				F69CA2CD301B860A001B0847 /* felis742-ltn-fmc-profile.cpp */,
+				F662AA08304C332300FAC102 /* ffa320-fmc-profile.h */,
+				F662AA09304C332300FAC102 /* ffa320-fmc-profile.cpp */,
 			);
 			path = profiles;
 			sourceTree = "<group>";
@@ -870,6 +884,8 @@
 				F646535E2FDAFB23001F7640 /* profile-cleanup.cpp */,
 				F6A0E6F02FDCA55200BEC19C /* xplane-bindings.h */,
 				F6A0E6F12FDCA55200BEC19C /* xplane-bindings.cpp */,
+				F662AA0C304C333C00FAC102 /* ffsharedvalues.h */,
+				F662AA0D304C333C00FAC102 /* ffsharedvalues.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1038,6 +1054,8 @@
 				F6B520E72FC7676F00A04562 /* xcrafts-erj-ursa-minor-throttle-profile.cpp */,
 				F60F7FDF2FC9B694000EA4E2 /* rotatemd11-ursa-minor-throttle-profile.h */,
 				F60F7FE02FC9B694000EA4E2 /* rotatemd11-ursa-minor-throttle-profile.cpp */,
+				F662AA10304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.h */,
+				F662AA11304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp */,
 			);
 			path = profiles;
 			sourceTree = "<group>";
@@ -1203,6 +1221,7 @@
 				F6A1493D2E4F04AE00FB8395 /* zibo-fmc-profile.cpp in Sources */,
 				F6C6E0332E8D5DAA00558F46 /* product-pap3-mcp.cpp in Sources */,
 				838AA8B52EEF2918006444F6 /* ff350-fcu-efis-profile.cpp in Sources */,
+				F662AA13304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp in Sources */,
 				F6C6E0342E8D5DAA00558F46 /* laminar-737-pap3-mcp-profile.cpp in Sources */,
 				B5800000000000000000B0F3 /* b58-pap3-mcp-profile.cpp in Sources */,
 				F6C6E0352E8D5DAA00558F46 /* zibo-pap3-mcp-profile.cpp in Sources */,
@@ -1214,6 +1233,7 @@
 				F6B149522E4F04AE00FB8395 /* fps748-fmc-profile.cpp in Sources */,
 				F60D39C02FD0D3B600C792EB /* product-orion-throttle.cpp in Sources */,
 				F681E2232FC9E5AE0009D9FB /* stratosphere77w-fcu-efis-profile.cpp in Sources */,
+				F662AA0B304C332300FAC102 /* ffa320-fmc-profile.cpp in Sources */,
 				E164E7F621BA6932F4BE9D64 /* sparky744-fmc-profile.cpp in Sources */,
 				F6A1493F2E4F04AE00FB8395 /* ff777-fmc-profile.cpp in Sources */,
 				F60ABACD2FBDF029001C91EF /* xcrafts-ejets-fcu-efis-profile.cpp in Sources */,
@@ -1257,6 +1277,7 @@
 				AF9A28CC2FB71A19004849B1 /* pa28-fcu-efis-profile.cpp in Sources */,
 				F67B29CD2FB71A19004849B1 /* cis-seneca-fcu-efis-profile.cpp in Sources */,
 				F647201F2E16CF6D00C9976B /* usbdevice.cpp in Sources */,
+				F662AA0F304C333C00FAC102 /* ffsharedvalues.cpp in Sources */,
 				F67110DE2E5AF429008D493B /* font.cpp in Sources */,
 				F6C69C0E2EC0DAE300BFDA65 /* laminar-737-fcu-efis-profile.cpp in Sources */,
 				F6BBFF0A2ED741B900FE9D7F /* rotatemd11-pap3-mcp-profile.cpp in Sources */,
@@ -1338,6 +1359,7 @@
 				F635AD4B2E05819E005D6CDC /* usbdevice_mac.cpp in Sources */,
 				F67B29CE2FB71A19004849B1 /* c172-laminar-fcu-efis-profile.cpp in Sources */,
 				A2200000000000000000B0F2 /* a220-fcu-efis-profile.cpp in Sources */,
+				F662AA0A304C332300FAC102 /* ffa320-fmc-profile.cpp in Sources */,
 				B5800000000000000000B0F2 /* b58-fcu-efis-profile.cpp in Sources */,
 				AF1720CE2FB71A19004849B1 /* c172-afl-fcu-efis-profile.cpp in Sources */,
 				AF9A28CE2FB71A19004849B1 /* pa28-fcu-efis-profile.cpp in Sources */,
@@ -1416,6 +1438,7 @@
 				F603CFA22FCECBA1005DF928 /* ff777-joystick-profile.cpp in Sources */,
 				F603CFA32FCECBA1005DF928 /* zibo-joystick-profile.cpp in Sources */,
 				F603CFA42FCECBA1005DF928 /* toliss-joystick-profile.cpp in Sources */,
+				F662AA12304C339700FAC102 /* laminar-a333-ursa-minor-throttle-profile.cpp in Sources */,
 				F69CA2CE301B860A001B0847 /* felis742-ltn-fmc-profile.cpp in Sources */,
 				F6EBDC0C2FC6C740005AFCBD /* xcrafts-erj-agp-profile.cpp in Sources */,
 				F603CF712FCDA132005DF928 /* toliss-rmp-profile.cpp in Sources */,
@@ -1456,6 +1479,7 @@
 				F6D8E6C82ED059390041C4FB /* toliss-ecam-profile.cpp in Sources */,
 				AF9A28E52FB71A19004849B1 /* pa28-ecam-profile.cpp in Sources */,
 				F60ABAC92FBDA72B001C91EF /* zibo-tcas-profile.cpp in Sources */,
+				F662AA0E304C333C00FAC102 /* ffsharedvalues.cpp in Sources */,
 				F603CF972FCEC8F9005DF928 /* product-joystick.cpp in Sources */,
 				F6C248472EBE498500617E89 /* plugins-menu.cpp in Sources */,
 				F6ADBA022FA72A0A00DCA201 /* laminar-citx-fmc-profile.cpp in Sources */,
@@ -1515,6 +1539,8 @@
 					"XPLM420=1",
 					"XPLM421=1",
 					"XPLM430=1",
+					"XPLM411=1",
+					"XPLM440=1",
 					"DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -1531,7 +1557,7 @@
 					"$(HEADER_SEARCH_PATHS)",
 				);
 				MACH_O_TYPE = mh_bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				XPSDK_ROOT = SDK;
@@ -1588,6 +1614,8 @@
 					"XPLM420=1",
 					"XPLM421=1",
 					"XPLM430=1",
+					"XPLM411=1",
+					"XPLM440=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = "";
@@ -1603,7 +1631,7 @@
 					"$(HEADER_SEARCH_PATHS)",
 				);
 				MACH_O_TYPE = mh_bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1632,7 +1660,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DNDEBUG",
@@ -1677,7 +1705,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DNDEBUG",
@@ -1905,6 +1933,8 @@
 					"XPLM420=1",
 					"XPLM421=1",
 					"XPLM430=1",
+					"XPLM411=1",
+					"XPLM440=1",
 					"DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -1921,7 +1951,7 @@
 					"$(HEADER_SEARCH_PATHS)",
 				);
 				MACH_O_TYPE = mh_bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				XPSDK_ROOT = SDK;
@@ -1949,7 +1979,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DNDEBUG",
