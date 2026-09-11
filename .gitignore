@@ -115,3 +115,6 @@ CLAUDE.md
 #VSCode
 .vscode/
 *.code-workspace
+
+# Shared secret for the updater server /upload route. Never commit this.
+build_platforms_upload_token.txt

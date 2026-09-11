@@ -7,7 +7,7 @@ SET(CMAKE_CXX_COMPILER clang++)
 # build machine (that is how boarderline and avitab-browser ended up shipping
 # plugins that required macOS 26). arm64 slices clamp to 11.0 regardless, which
 # is expected; the value below governs the x86_64 slice.
-SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
+SET(CMAKE_OSX_DEPLOYMENT_TARGET "12.0")
 
 if(DEFINED SDK_VERSION AND NOT SDK_VERSION STREQUAL "")
   if(SDK_VERSION GREATER_EQUAL 400)

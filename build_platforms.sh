@@ -1,9 +1,52 @@
 #!/bin/sh
 
-PROJECT_NAME=$(find . -name "*.xcodeproj" | sed 's/\.xcodeproj//g' | sed 's/^\.\///g' | tr '[:upper:]' '[:lower:]')
-VERSION=$(grep "#define VERSION " src/include/config.h | cut -d " " -f 3 | tr -d '"')
+# ---------------------------------------------------------------------------
+# Project configuration. This block is the ONLY part that differs between the
+# WINCTRL, Boarderline and ToLiss MCDU Plus copies of this script. Everything
+# below the separator is shared; change it in one place and copy it across.
+# ---------------------------------------------------------------------------
 
+# Leave empty to derive from the .xcodeproj name, lowercased. Set it explicitly
+# only when the Xcode project name and the .xpl basename disagree.
+PROJECT_NAME=""
+
+# Skunkcrafts updater identity.
+MODULE_URL="https://ramonster.nl/winctrl-plugin"
+MODULE_NAME="WINCTRL"
+
+# Google Drive folder the release zip is uploaded to.
+GDRIVE_FOLDER="1NtjQGUKH9Y8hrfOscwMPC99bVMnh7C0x"
+
+# Folders copied verbatim into the distribution bundle. Space separated, may be empty.
+BUNDLE_DIRS="fonts"
+
+# Run after a successful build and upload. May be empty.
+POST_BUILD="./update_readme.sh"
+
+# Module folder on ramonster.nl to publish the finished zip to, e.g. "boarderline". Set this for a
+# private repository, where the updater server cannot pull the release from GitHub itself. Leave it
+# empty to skip the step entirely and not be asked about it.
+UPLOAD_FOLDER=""
+
+# ---------------------------------------------------------------------------
+# Shared build logic. Keep this section byte-identical across projects; if you
+# need to change something per project, promote it into the block above.
+# ---------------------------------------------------------------------------
+
+CONFIG_H="src/include/config.h"
 AVAILABLE_PLATFORMS="mac win lin"
+
+if [ -z "$PROJECT_NAME" ]; then
+    PROJECT_NAME=$(find . -name "*.xcodeproj" | sed 's/\.xcodeproj//g' | sed 's/^\.\///g' | tr '[:upper:]' '[:lower:]')
+fi
+VERSION=$(grep "#define VERSION " $CONFIG_H | cut -d " " -f 3 | tr -d '"')
+# VERSION is reassigned to the release tag (0.0.3-XP12) further down, but the updater server keys
+# off the plain number, so keep a copy of it for the upload step.
+BASE_VERSION="$VERSION"
+
+# Shared secret for the /upload route, matching upload_token.txt in the server's module folder.
+# Sits next to this script and is listed in .gitignore, so it is never committed.
+UPLOAD_TOKEN_FILE="build_platforms_upload_token.txt"
 
 echo "Building $PROJECT_NAME.xpl version $VERSION. Is this correct? (y/n) [default: y]:"
 read CONFIRM
@@ -13,15 +56,21 @@ if [ -z "$CONFIRM" ]; then
 fi
 
 if [ "$CONFIRM" != "y" ]; then
-    echo "Please update the version number in config.h and try again."
+    echo "Please update the version number in $CONFIG_H and try again."
     exit 1
 fi
 
-echo "Which platforms would you like to build? ($AVAILABLE_PLATFORMS) [default: all]:"
-read PLATFORMS
+# Platforms come from the command line when given, e.g. `./build_platforms.sh mac`,
+# which is what you want while iterating. With no arguments it asks, defaulting to all.
+if [ $# -gt 0 ]; then
+    PLATFORMS="$@"
+else
+    echo "Which platforms would you like to build? ($AVAILABLE_PLATFORMS) [default: all]:"
+    read PLATFORMS
 
-if [ -z "$PLATFORMS" ]; then
-    PLATFORMS=$AVAILABLE_PLATFORMS
+    if [ -z "$PLATFORMS" ]; then
+        PLATFORMS=$AVAILABLE_PLATFORMS
+    fi
 fi
 
 for platform in $PLATFORMS; do
@@ -75,6 +124,26 @@ read UPLOAD_TO_DRIVE
 
 if [ -z "$UPLOAD_TO_DRIVE" ]; then
     UPLOAD_TO_DRIVE="y"
+fi
+
+# Asked here rather than at the end so the build runs unattended once the questions are answered.
+if [ -n "$UPLOAD_FOLDER" ]; then
+    echo "Publish to https://ramonster.nl/$UPLOAD_FOLDER after build? (y/n) [default: y]:"
+    read UPLOAD_TO_SERVER
+
+    if [ -z "$UPLOAD_TO_SERVER" ]; then
+        UPLOAD_TO_SERVER="y"
+    fi
+
+    # Checked up front: finding this out after a three-platform build would waste the whole run.
+    if [ "$UPLOAD_TO_SERVER" = "y" ] && [ ! -f "$UPLOAD_TOKEN_FILE" ]; then
+        echo "\033[1;31mERROR: manual upload is enabled but $UPLOAD_TOKEN_FILE is missing.\033[0m"
+        echo "It must hold the same secret as upload_token.txt in the server's $UPLOAD_FOLDER/ folder."
+        echo "Generate a new pair with: openssl rand -hex 32 > $UPLOAD_TOKEN_FILE && chmod 600 $UPLOAD_TOKEN_FILE"
+        exit 1
+    fi
+else
+    UPLOAD_TO_SERVER="n"
 fi
 
 if [ "$CLEAN_BUILD" = "y" ]; then
@@ -161,11 +230,19 @@ for platform in $AVAILABLE_PLATFORMS; do
     fi
 done
 
-cp -r fonts build/dist
+for dir in $BUNDLE_DIRS; do
+    if [ -d "$dir" ]; then
+        cp -r "$dir" build/dist
+    else
+        echo "\033[1;31mERROR: BUNDLE_DIRS names '$dir' but that folder does not exist.\033[0m"
+        exit 1
+    fi
+done
 
-# Only add Skunkcrafts for XP12
+# Only add Skunkcrafts for XP12. The module URL is where the updater endpoint lives, and that
+# endpoint derives it from its own folder name, so the two must stay in step.
 if [ $SDK_VERSION -ge 400 ]; then
-    echo "module|https://ramonster.nl/winctrl-plugin\nname|WINCTRL\nversion|$VERSION\nlocked|false\ndisabled|false\nzone|custom" > build/dist/skunkcrafts_updater.cfg
+    echo "module|$MODULE_URL\nname|$MODULE_NAME\nversion|$VERSION\nlocked|false\ndisabled|false\nzone|custom" > build/dist/skunkcrafts_updater.cfg
 fi
 
 cd build
@@ -179,13 +256,13 @@ zip -rq $PROJECT_NAME-$VERSION.zip $PROJECT_NAME -x "*/.DS_Store" -x "*/__MACOSX
 mv $PROJECT_NAME dist
 cd ..
 
-echo "Bundle created. Distribution: build/dist/$PROJECT_NAME-$VERSION.zip"
+echo "Bundle created. Distribution: build/$PROJECT_NAME-$VERSION.zip"
 echo "Debug symbols archived: $SYMBOLS_DIR (keep this if you need to symbolicate crashes from this release)"
 
 # Upload to Google Drive if requested and gdrive is available
-if [ "$UPLOAD_TO_DRIVE" = "y" ] && command -v gdrive &> /dev/null; then
+if [ "$UPLOAD_TO_DRIVE" = "y" ] && command -v gdrive > /dev/null 2>&1; then
     echo "Uploading to Google Drive..."
-    FOLDER="1NtjQGUKH9Y8hrfOscwMPC99bVMnh7C0x"
+    FOLDER="$GDRIVE_FOLDER"
 
     # Delete old file with same name if it exists
     OLD_FILE_ID=$(gdrive files list --parent $FOLDER | grep "$PROJECT_NAME-$VERSION.zip" | awk '{print $1}')
@@ -203,4 +280,25 @@ if [ "$UPLOAD_TO_DRIVE" = "y" ] && command -v gdrive &> /dev/null; then
     fi
 fi
 
-./update_readme.sh
+# Push the zip straight to the updater server. Needed for private repositories, where the server
+# cannot pull the release itself; the module's index.php must have $allow_manual_upload = true.
+if [ "$UPLOAD_TO_SERVER" = "y" ]; then
+    echo "Publishing to https://ramonster.nl/$UPLOAD_FOLDER ..."
+    UPLOAD_RESULT=$(curl -sS --fail-with-body -X POST \
+        -H "X-Upload-Token: $(cat "$UPLOAD_TOKEN_FILE")" \
+        -F "version=$BASE_VERSION" \
+        -F "zip=@build/$PROJECT_NAME-$VERSION.zip" \
+        "https://ramonster.nl/$UPLOAD_FOLDER/upload" 2>&1)
+
+    if [ $? -eq 0 ]; then
+        echo "\033[1;32mServer updated: $UPLOAD_RESULT\033[0m"
+        echo "Verify with: curl https://ramonster.nl/$UPLOAD_FOLDER/current-version"
+    else
+        echo "\033[1;31mUpload failed: $UPLOAD_RESULT\033[0m"
+        exit 1
+    fi
+fi
+
+if [ -n "$POST_BUILD" ]; then
+    $POST_BUILD
+fi
