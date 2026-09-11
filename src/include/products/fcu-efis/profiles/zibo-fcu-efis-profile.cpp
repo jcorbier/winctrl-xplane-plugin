@@ -13,16 +13,17 @@
 
 ZiboFCUEfisProfile::ZiboFCUEfisProfile(ProductFCUEfis *product) : FCUEfisAircraftProfile(product) {
     Dataref::getInstance()->monitorExistingDataref<std::vector<float>>("laminar/B738/electric/panel_brightness", [product](const std::vector<float> &brightness) {
-        if (brightness.empty()) {
+        if (brightness.size() < 2) {
             return;
         }
 
         bool avionicsOn = Dataref::getInstance()->get<bool>("sim/cockpit/electrical/avionics_on");
 
-        // Use appropriate brightness index for 737 instruments
+        // panel_brightness[0] is the captain's MAIN PANEL knob, [1] the first officer's.
         uint8_t target = avionicsOn ? brightness[0] * 255 : 0;
+        uint8_t targetFo = avionicsOn ? brightness[1] * 255 : 0;
         product->setLedBrightness(FCUEfisLed::BACKLIGHT, target);
-        product->setLedBrightness(FCUEfisLed::EFISR_BACKLIGHT, target);
+        product->setLedBrightness(FCUEfisLed::EFISR_BACKLIGHT, targetFo);
         product->setLedBrightness(FCUEfisLed::EFISL_BACKLIGHT, target);
         product->setLedBrightness(FCUEfisLed::EXPED_BACKLIGHT, target);
         product->setLedBrightness(FCUEfisLed::OVERALL_GREEN, avionicsOn ? 255 : 0);
