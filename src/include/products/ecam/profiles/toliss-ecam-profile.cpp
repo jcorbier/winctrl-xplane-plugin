@@ -62,9 +62,9 @@ bool TolissECAMProfile::IsEligible() {
 
 const std::unordered_map<uint16_t, ECAMButtonDef> &TolissECAMProfile::buttonDefs() const {
     static const std::unordered_map<uint16_t, ECAMButtonDef> buttons = {
-        {0, {"EMPTY 1", ""}},
+        {0, {"EMPTY 1", "AirbusFBW/ECP/SelectCircuitBreakerPage"}},
         {1, {"TOCONFIG", "AirbusFBW/TOConfigPress"}},
-        {2, {"EMPTY 2", ""}},
+        {2, {"EMPTY 2", "AirbusFBW/ECP/SelectElecDCPage"}},
         {3, {"EMER", "AirbusFBW/EmerCancel"}},
         {4, {"ENG", "AirbusFBW/ECP/SelectEnginePage"}},
         {5, {"BLEED", "AirbusFBW/ECP/SelectBleedPage"}},
